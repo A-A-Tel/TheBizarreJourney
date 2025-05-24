@@ -1,0 +1,15 @@
+classDiagram
+    class Game {
+        -Tile[,] _world
+        
+    }
+    class Tile {
+        <<abstract>>
+        
+        +bool Entered
+        +bool Enterable
+        
+        ?+void PlayerEnterAction()
+    }
+    
+    Game --> Tile
