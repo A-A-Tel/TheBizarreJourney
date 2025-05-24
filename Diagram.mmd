@@ -1,15 +1,52 @@
 classDiagram
     class Game {
-        -Tile[,] _world
+        -Tile[, ] _world
+        -Player _player
         
+        +void StartGame()
+        +void MoveAction()
     }
     class Tile {
         <<abstract>>
         
         +bool Entered
-        +bool Enterable
+        ?+bool Enterable
         
-        ?+void PlayerEnterAction()
+        ?+void PlayerEnterAction(Player)
+    }
+    
+    class Entity {
+        <<abstract>>
+        +int MaxHealth
+        +int Health
+        ?+string name
+        
+        ?+void ProcessAttack(Attack)
+    }
+    class Player {
+        +List:Weapon Weapons
+        +int WeaponIndex
+    }
+    class Enemy {
+        <<abstract>>
+    }
+    
+    class Weapon {
+        <<abstract>>
+        ?+string Name
+        
+        ?+Attack GenerateAttack()
+    }
+    
+    class Attack {
+        +int Damage
     }
     
     Game --> Tile
+    Game --> Player
+    
+    Entity --> Attack
+    Entity <-- Player
+    Entity <-- Enemy
+    
+    Weapon --> Attack
