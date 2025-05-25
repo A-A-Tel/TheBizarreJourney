@@ -5,6 +5,7 @@ classDiagram
         
         +void StartGame()
         +void MoveAction()
+        -bool Move(int[] direction)
     }
     class Tile {
         <<abstract>>
@@ -26,6 +27,8 @@ classDiagram
     class Player {
         +List:Weapon Weapons
         +int WeaponIndex
+        +int[2] Location
+        
     }
     class Enemy {
         <<abstract>>
@@ -45,8 +48,8 @@ classDiagram
     Game --> Tile
     Game --> Player
     
+    Entity <-- Enemy
     Entity --> Attack
     Entity <-- Player
-    Entity <-- Enemy
     
     Weapon --> Attack
